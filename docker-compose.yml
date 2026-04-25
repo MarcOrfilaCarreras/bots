@@ -1,0 +1,15 @@
+---
+version: '3.8'
+
+services:
+    bots:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: bots
+        volumes:
+            - ./logs:/app/logs
+            - ./db:/app/db
+        env_file:
+            - .env
+        restart: unless-stopped

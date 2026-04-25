@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 from dotenv import load_dotenv
 
@@ -36,8 +37,8 @@ def run() -> None:
             'asset_type': 'Todos',
             'asset_subtype': 'Todos',
             'province': 'Illes Balears',
-            'start_date': '2026-03-27',
-            'end_date': '2026-04-25',
+            'start_date': datetime.today().strftime('%Y-%m-%d'),
+            'end_date': datetime.today().strftime('%Y-%m-%d'),
             'page': 1,
         },
     )

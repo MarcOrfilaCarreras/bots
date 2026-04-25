@@ -63,7 +63,7 @@ def run() -> None:
                 f"💰 *Price:* {bot.escape(str(property_['price']))} {bot.escape(property_['currency'])}\n\n"
                 f"📊 *Status:* {bot.escape(property_['availability'])}\n\n"
                 f"📍 *Location:* {bot.escape(property_['location']['address'] + ', ' + property_['location']['municipality'])}\n"
-                f'[‎]({property_["location"]})'
+                f'[‎]({property_["url"]})'
             )
 
             if len(db.read(dict, filters={'id': property_['id']})) > 0:

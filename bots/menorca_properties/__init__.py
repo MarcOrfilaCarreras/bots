@@ -57,13 +57,19 @@ def run() -> None:
         logger.info(f'[Menorca Properties] Found {len(properties)} properties')
 
         for property_ in properties:
+            location = property_.get('location') or {}
+            location_text = ', '.join(filter(None, [
+                location.get('address'),
+                location.get('municipality')
+            ])) or 'Not specified'
+
             message = (
                 f'📢 *NEW PROPERTY FOUND*\n\n'
                 f"🏷 *Type:* {bot.escape(property_['property_type'])}\n\n"
                 f"💰 *Price:* {bot.escape(str(property_['price']))} {bot.escape(property_['currency'])}\n\n"
                 f"📊 *Status:* {bot.escape(property_['availability'])}\n\n"
-                f"📍 *Location:* {bot.escape(property_['location']['address'] + ', ' + property_['location']['municipality'])}\n"
-                f'[‎]({property_["url"]})'
+                f'📍 *Location:* {bot.escape(location_text)}\n'
+                f'[‎]({bot.escape(property_["url"])})'
             )
 
             if len(db.read(dict, filters={'id': property_['id']})) > 0:
